@@ -47,6 +47,10 @@ class DiscoverySwarmWebrtc extends EventEmitter {
 
     this._maxPeers = opts.maxPeers
 
+    this._sampleSize = opts.sampleSize
+
+    this._percentFar = opts.percentFar
+
     this.signal = new SignalClient({
       bootstrap: opts.bootstrap,
       connectionTimeout: opts.connectionTimeout || 10 * 1000,
@@ -106,6 +110,8 @@ class DiscoverySwarmWebrtc extends EventEmitter {
       lookup: () => this._lookup(channel),
       connect: (to) => this._createConnection(to, channel),
       maxPeers: this._maxPeers,
+      sampleSize: this._sampleSize,
+      percentFar: this._percentFar,
       lookupTimeout: 5 * 1000
     })
 
